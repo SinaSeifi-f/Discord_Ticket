@@ -12,12 +12,13 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print(f"{bot.user} is online!")
+    print("Loaded commands:", [c.name for c in bot.commands])
 
 async def main():
+    bot.load_extension("cogs.ticket")
+    bot.load_extension("cogs.panel")
 
-    await bot.load_extension("cogs.ticket")
-    await bot.load_extension("cogs.panel")
-    
-    await bot.start(config.TOKEN)
+    async with bot:
+        await bot.start(config.TOKEN)
 
 asyncio.run(main())
