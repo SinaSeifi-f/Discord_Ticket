@@ -185,5 +185,5 @@ class Ticket(commands.Cog):
         except Exception as e:
             await interaction.followup.send(f"❌ Error sending ticket message: {e}", ephemeral=True)
 
-async def setup(bot):
-    await bot.add_cog(Ticket(bot))
+def setup(bot):
+    bot.add_cog(Ticket(bot))
